@@ -12,6 +12,17 @@
             <h3>Ainda não há contatos na sua lista. <a href="/add">Clique aqui para adicionar</a></h3>
         </div>
         @endif
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
+        @if(session()->has('success-delete'))
+            <div class="alert alert-danger">
+                {{ session()->get('success-delete') }}
+            </div>
+        @endif
         @foreach($contatos as $contato)
         <div class="col-md-12 shadow-sm backgroundCartaoContato">
             <h3>{{$contato->Nome}} </h3><p></p>

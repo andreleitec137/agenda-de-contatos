@@ -36,13 +36,13 @@ class ContatoController extends Controller
             'estado' => $request->estado,
             'cidade' => $request->cidade,
             'bairro' => $request->bairro,
-            'rua' => $request->logradouro,
+            'rua' => $request->rua,
             'numero' => $request->numero,
             'complemento' => $request->complemento,
             ]);
         $dados->save();
         
-        return redirect('/');
+        return redirect('/')->with('success', 'Contato criado com sucesso' );;
     }
 
     
@@ -72,12 +72,12 @@ class ContatoController extends Controller
 
         $dadosAtualizar->update();
         
-        return redirect('/');
+        return redirect('/')->with('success', 'Contato atualizado com sucesso' );;
     }
 
     public function delete($id){
         $dadosExcluir = ContatoModel::where('ID', $id)->first();
         $dadosExcluir->delete();
-        return redirect('/');
+        return redirect('/')->with('success-delete', 'Contato apagado com sucesso' );;
     }
 }

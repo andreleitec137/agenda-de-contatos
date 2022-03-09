@@ -13,10 +13,22 @@ class HomeController extends Controller
         $search = request('search');
 
         if($search){
+
             $querySpecify = HomeModel::where([
-                ['nome', 'like', '%'.$search.'%']
+                ['Nome', 'like', '%'.$search.'%']
             ])->get();
 
+            if($querySpecify->count() == 0){
+                $querySpecify = HomeModel::where([
+                    ['Telefone', 'like', '%'.$search.'%']
+                ])->get();
+            }
+
+            if($querySpecify->count() == 0){
+                $querySpecify = HomeModel::where([
+                    ['Email', 'like', '%'.$search.'%']
+                ])->get();
+            }
             return view('home')->with(['contatos' =>  $querySpecify, 'search' => $search]);
 
         }else{

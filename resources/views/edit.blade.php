@@ -112,11 +112,11 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="logradouro" class="col-form-label text-md-left">{{ __('Logradouro') }}*</label>
+                                        <label for="rua" class="col-form-label text-md-left">{{ __('Rua') }}*</label>
 
-                                        <input id="logradouro" type="text" class="form-control @error('logradouro') is-invalid @enderror" name="logradouro" value="{{$user->rua}}"  readonly="readonly" autocomplete="logradouro" autofocus>
+                                        <input id="rua" type="text" class="form-control @error('rua') is-invalid @enderror" name="rua" value="{{$user->rua}}"  readonly="readonly" autocomplete="rua" autofocus>
 
-                                        @error('logradouro')
+                                        @error('rua')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>Campo Obrigatório</strong>
                                             </span>
@@ -181,6 +181,7 @@
             <!-- FIM -->
 
             <button type="submit" class="btn btn-submit-lista btn-block"  name="action" value="salvar">Atualizar Contato </button>
+
         @endforeach
         </form>
     </div>
@@ -196,8 +197,7 @@ $("#cep").focusout(function(){
         url: 'https://viacep.com.br/ws/'+cep+'/json/unicode/',
         dataType: 'json',
         success: function(resposta){
-            $("#logradouro").val(resposta.logradouro);
-            $("#complemento").val(resposta.complemento);
+            $("#rua").val(resposta.logradouro);
             $("#bairro").val(resposta.bairro);                       
             $("#cidade").val(resposta.localidade);
             $("#estado").val(resposta.uf);                       

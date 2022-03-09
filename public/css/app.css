@@ -1,0 +1,9 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light {
+    padding-left: 2%;
+}
+
+button.btn.btn-submit-lista.btn-block {
+    margin-top: 20px;
+    background-color: #28a133;
+    color: #ffffff;
+}

@@ -1,5 +1,4 @@
 @extends('layouts.header')
-
 @section('content')
 <div class="col-md-12">
     <div class="container">
@@ -8,14 +7,16 @@
         <form  method="POST" id="adicionarContato" action="{{ route('store') }}" > 
                 @csrf     
             <!-- CONTATO NOME -->
+            <Br>
+            <h3>Informações de Contato</h3>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="Nome">Nome do Contato*</label>
-                        <input id="Nome" type="text" class="form-control @error('Nome') is-invalid @enderror" name="Nome">
+                    <label for="Nome" class="col-form-label text-md-left">{{ __('Nome') }}*</label>
+                        <input id="Nome" type="text" class="form-control @error('Nome') is-invalid @enderror"  value="{{ old('Nome') }}" name="Nome">
                         @error('Nome')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $Nome  }}</strong>
+                                <strong>Campo Obrigatório</strong>
                             </span>
                         @enderror
                     </div>
@@ -25,11 +26,11 @@
             <!-- TELEFONE -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="Telefone">Telefone*</label>
-                        <input id="Telefone" type="text" class="form-control @error('Telefone') is-invalid @enderror" name="Telefone">
+                    <label for="Telefone" class="col-form-label text-md-left">{{ __('Telefone') }}*</label>
+                        <input id="Telefone" type="text" class="form-control @error('Telefone') is-invalid @enderror" value="{{ old('Telefone') }}" name="Telefone">
                         @error('Telefone')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $Telefone  }}</strong>
+                                <strong>Campo Obrigatório</strong>
                             </span>
                         @enderror
                     </div>
@@ -41,11 +42,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="Email">Email*</label>
-                            <input id="Email" type="text" class="form-control @error('Email') is-invalid @enderror" name="Email">
+                        <label for="Email" class="col-form-label text-md-left">{{ __('Email') }}*</label>
+                            <input id="Email" type="email" class="form-control @error('Email') is-invalid @enderror"  value="{{ old('Email') }}" name="Email">
                             @error('Email ')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $contatoEmail_1  }}</strong>
+                                    <strong>Campo Obrigatório</strong>
                                 </span>
                             @enderror
                         </div>
@@ -54,19 +55,19 @@
                 
                 
             <!-- FIM -->
-
-
+            <Br><Br>
+            <h3>Endereço</h3>
               <!-- CEP -->
               <div class="row">                               
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="cep" class="col-form-label text-md-left">{{ __('CEP') }}*</label>
 
-                                        <input id="cep" type="text" class="form-control @error('cep') is-invalid @enderror" name="cep" value="{{  session()->get('cep') }}"  autocomplete="cep" autofocus>
+                                        <input id="cep" type="text" class="form-control @error('cep') is-invalid @enderror" name="cep" value="{{ old('cep') }}"  autocomplete="cep" autofocus>
 
                                         @error('cep')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -82,7 +83,7 @@
                                           
                                         @error('estado')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -94,11 +95,11 @@
                                     <div class="form-group">
                                     <label for="cidade" class="col-form-label text-md-left">{{ __('Cidade') }}*</label>
 
-                                    <input id="cidade" type="text" class="form-control @error('cidade') is-invalid @enderror" name="cidade" value="{{  session()->get('cidade') }}"  autocomplete="cidade" readonly="readonly" autofocus>
+                                    <input id="cidade" type="text" class="form-control @error('cidade') is-invalid @enderror" name="cidade" value="{{ old('cidade') }}"  autocomplete="cidade" readonly="readonly" autofocus>
 
                                     @error('cidade')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>Campo Obrigatório</strong>
                                         </span>
                                     @enderror
                                     </div>
@@ -112,11 +113,11 @@
                                     <div class="form-group">
                                         <label for="logradouro" class="col-form-label text-md-left">{{ __('Logradouro') }}*</label>
 
-                                        <input id="logradouro" type="text" class="form-control @error('logradouro') is-invalid @enderror" name="logradouro" value="{{  session()->get('logradouro') }}"  readonly="readonly" autocomplete="logradouro" autofocus>
+                                        <input id="logradouro" type="text" class="form-control @error('logradouro') is-invalid @enderror" name="logradouro" value="{{ old('logradouro') }}"  readonly="readonly" autocomplete="logradouro" autofocus>
 
                                         @error('logradouro')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -129,11 +130,11 @@
                                     <div class="form-group">
                                         <label for="bairro" class="col-form-label text-md-left">{{ __('Bairro') }}*</label>
 
-                                        <input id="bairro" type="text" class="form-control @error('bairro') is-invalid @enderror" name="bairro" value="{{  session()->get('bairro') }}"  readonly="readonly" autocomplete="bairro" autofocus>
+                                        <input id="bairro" type="text" class="form-control @error('bairro') is-invalid @enderror" name="bairro" value="{{ old('bairro') }}"  readonly="readonly" autocomplete="bairro" autofocus>
 
                                         @error('bairro')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -145,11 +146,11 @@
                                     <div class="form-group">
                                         <label for="numero" class="col-form-label text-md-left">{{ __('Número') }}*</label>
 
-                                        <input id="numero" type="text" class="form-control @error('numero') is-invalid @enderror" name="numero" value="{{  session()->get('numero') }}"  autocomplete="numero" autofocus>
+                                        <input id="numero" type="text" class="form-control @error('numero') is-invalid @enderror" name="numero" value="{{ old('numero') }}"  autocomplete="numero" autofocus>
 
                                         @error('numero')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -161,13 +162,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="complemento" class="col-form-label text-md-left">{{ __('Complemento') }}*</label>
+                                        <label for="complemento" class="col-form-label text-md-left">{{ __('Complemento') }}</label>
 
-                                        <input id="complemento" type="text" class="form-control @error('complemento') is-invalid @enderror" name="complemento" value="{{  session()->get('complemento') }}" autocomplete="complemento" autofocus>
+                                        <input id="complemento" type="text" class="form-control @error('complemento') is-invalid @enderror" name="complemento" value="{{ old('complemento') }}" autocomplete="complemento" autofocus>
 
                                         @error('complemento')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>Campo Obrigatório</strong>
                                             </span>
                                         @enderror
                                     </div>

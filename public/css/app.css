@@ -7,3 +7,25 @@ button.btn.btn-submit-lista.btn-block {
     background-color: #28a133;
     color: #ffffff;
 }
+
+a.editButton {
+    background-color: #dcad27;
+    color: #ffffff;
+    padding: 8px;
+    margin-right: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+
+a.deleteButton {
+    background-color: #dc2727;
+    color: #ffffff;
+    padding: 8px;
+    margin-right: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+}

@@ -30,8 +30,8 @@
         </li>   
       
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Procurar Contato" aria-label="Search">
+        <form action="/" class="form-inline my-2 my-lg-0" method="GET">
+        <input name="search" id="search" class="form-control mr-sm-2" type="text" placeholder="Procurar Contato" aria-label="Search">
         </form>
     </div>
     </nav>

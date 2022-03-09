@@ -1,9 +1,10 @@
 @extends('layouts.header')
 @section('content')
 <div class="col-md-12">
-    <div class="container">
+<div class="bannerAgenda">
         <h1>Adicionar Contato</h1>
-
+    </div>
+    <div class="container">
         <form  method="POST" id="adicionarContato" action="{{ route('store') }}" > 
                 @csrf     
             <!-- CONTATO NOME -->
@@ -27,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                     <label for="Telefone" class="col-form-label text-md-left">{{ __('Telefone') }}*</label>
-                        <input id="Telefone" type="text" class="form-control @error('Telefone') is-invalid @enderror" value="{{ old('Telefone') }}" name="Telefone">
+                        <input id="Telefone"  onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control @error('Telefone') is-invalid @enderror" value="{{ old('Telefone') }}" name="Telefone">
                         @error('Telefone')
                             <span class="invalid-feedback" role="alert">
                                 <strong>Campo Obrigatório</strong>
@@ -186,45 +187,46 @@
 
 
 <script>
-
+    
 $("#cep").focusout(function(){
-                    var cep = $('#cep').val().replace(/\.|\-/g, '');
+        var cep = $('#cep').val().replace(/\.|\-/g, '');
 
-                //Início do Comando AJAX
-                $.ajax({
-                    //O campo URL diz o caminho de onde virá os dados
-                    //É importante concatenar o valor digitado no CEP
-                    url: 'https://viacep.com.br/ws/'+cep+'/json/unicode/',
-                    //Aqui você deve preencher o tipo de dados que será lido,
-                    //no caso, estamos lendo JSON.
-                    dataType: 'json',
-                    //SUCESS é referente a função que será executada caso
-                    //ele consiga ler a fonte de dados com sucesso.
-                    //O parâmetro dentro da função se refere ao nome da variável
-                    //que você vai dar para ler esse objeto.
-                    success: function(resposta){
-                        //Agora basta definir os valores que você deseja preencher
-                        //automaticamente nos campos acima.
+    $.ajax({
+        url: 'https://viacep.com.br/ws/'+cep+'/json/unicode/',
+        dataType: 'json',
+        success: function(resposta){
+            $("#logradouro").val(resposta.logradouro);
+            $("#complemento").val(resposta.complemento);
+            $("#bairro").val(resposta.bairro);                       
+            $("#cidade").val(resposta.localidade);
+            $("#estado").val(resposta.uf);                       
+            $("#numero").focus();
+        }
+    });                
+});
+function mask(o, f) {
+  setTimeout(function() {
+    var v = mphone(o.value);
+    if (v != o.value) {
+      o.value = v;
+    }
+  }, 1);
+}
 
-                        $("#logradouro").val(resposta.logradouro);
-                        $("#complemento").val(resposta.complemento);
-                        $("#bairro").val(resposta.bairro);                       
-                        $("#cidade").val(resposta.localidade);
-                        $("#estado").val(resposta.uf);
-                        if($("#logradouro").val() == "" || $("#logradouro").val() == null)
-                        {
-                            $("#logradouro").prop("readonly", false);                            
-                        }
-                        if($("#bairro").val() == "" || $("#bairro").val() == null)
-                        {
-                            $("#bairro").prop("readonly", false);                            
-                        }
-                        //Vamos incluir para que o Número seja focado automaticamente
-                        //melhorando a experiência do usuário
-                        $("#numero").focus();
-                    }
-                });                
-            });
+function mphone(v) {
+  var r = v.replace(/\D/g, "");
+  r = r.replace(/^0/, "");
+  if (r.length > 10) {
+    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+  } else if (r.length > 5) {
+    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (r.length > 2) {
+    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+  } else {
+    r = r.replace(/^(\d*)/, "($1");
+  }
+  return r;
+}
 </script>
 @stop
 

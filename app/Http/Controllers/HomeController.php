@@ -9,8 +9,21 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index() {
-        $queryAll = DB::table('tb_contatos')->get();
-        return view('home')->with(['contatos' =>  $queryAll]);
+
+        $search = request('search');
+
+        if($search){
+            $querySpecify = HomeModel::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
+
+            return view('home')->with(['contatos' =>  $querySpecify, 'search' => $search]);
+
+        }else{
+            $queryAll = HomeModel::all();
+            return view('home')->with(['contatos' =>  $queryAll, 'search' => $search]);
+        }
+       
     }
 
     

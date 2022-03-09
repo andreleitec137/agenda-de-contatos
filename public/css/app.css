@@ -2,10 +2,26 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     padding-left: 2%;
 }
 
+body{
+    background-color:#f1f1f1;
+}
+
 button.btn.btn-submit-lista.btn-block {
     margin-top: 20px;
     background-color: #28a133;
     color: #ffffff;
+}
+
+.bannerAgenda {
+    background-image: url(/images/banner.jpg);
+    height: 30%;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 7%;
+    margin-top: -35px;
+}
+li.nav-item {
+    padding-right: 50px;
 }
 
 a.editButton {
@@ -28,4 +44,11 @@ a.deleteButton {
     border-radius: 5px;
     font-size: 15px;
     text-decoration: none;
+}
+
+.col-md-12.shadow-sm.backgroundCartaoContato {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }

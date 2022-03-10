@@ -25,4 +25,6 @@
 
 Obrigado pela oportunidade :D 
 
+IMPORTANTE: O banco de dados usados é o bdAgendaContato.sql
+
 

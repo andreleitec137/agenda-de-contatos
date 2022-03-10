@@ -57,7 +57,6 @@ class ContatoController extends Controller
         ]);
 
         $dadosAtualizar = ContatoModel::where('ID', $request->ID)->first();
-
         $dadosAtualizar->Nome = $request->Nome;
         $dadosAtualizar->Email = $request->Email;
         $dadosAtualizar->cep = $request->cep;
@@ -67,8 +66,6 @@ class ContatoController extends Controller
         $dadosAtualizar->rua = $request->rua;
         $dadosAtualizar->numero = $request->numero;
         $dadosAtualizar->complemento = $request->complemento;
-
-
 
         $dadosAtualizar->update();
         
